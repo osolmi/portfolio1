@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotcuteAnymore — Portfolio 2026</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/project.css">
+    <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/project.js" defer></script>
+</head>
+<body>
+        <!-- 전역 커스텀 커서 -->
+    <div class="cursor" id="cursor">
+        <span class="cursor__label"></span>
+    </div>
+    <!-- 공통 고정 네비게이션 -->
+    <header class="nav">
+        <a href="index.html#slide-0" class="nav__logo"><img src="./images/nav_logo.png" alt="logo"></a>
+        <a href="index.html#slide-0" class="nav__mark" aria-label="홈으로 이동"><!-- 로고svg --></a>
+        <nav class="nav__links">
+            <a href="index.html#slide-1">About</a>
+            <a href="index.html#slide-2">Work</a>
+            <a href="index.html#slide-3">Graphic</a>
+        </nav>
+    </header>
+    <main class="project">
+        <div class="project__body">
+            <!-- 1. 좌측 열 (타이틀, 링크, 메타) 고정 -->
+            <div class="project__info">
+                <div class="project__header">
+                    <a href="index.html#slide-2" class="project__back" aria-label="Works로 돌아가기">
+                        <img src="./images/icon_back.png" alt="뒤로">
+                    </a>
+                    <div class="project__title-group">
+                        <p class="project__label">Project</p>
+                        <div class="project__title-row">
+                            <h1 class="project__title">Not Cute<br>Anymore</h1>
+                            <span class="project__num">(03)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <dl class="project__meta">
+                    <div class="project__links">
+                        <a href="https://osolmi.github.io/portfolio/NCA/" target="_blank" rel="noopener noreferrer"><!-- 새창,보안/접근성 -->
+                            Git
+                            <img src="./images/icon_arrow.png" alt="화살표">
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            Original
+                            <img src="./images/icon_arrow.png" alt="화살표">
+                        </a>
+                    </div>
+                    <div>
+                        <dt>Project Type</dt>
+                        <dd>NEW IDENTITY</dd>
+                    </div>
+                    <div>
+                        <dt>Tools</dt>
+                        <dd>HTML, Javascript, CSS, Photoshop, Illustrator, Heigsfield</dd>
+                    </div>
+                    <div>
+                        <dt>Role</dt>
+                        <dd>UI/UX Design, Web Publishing, Web Redesign</dd>
+                    </div>
+                </dl>
+
+                <span class="project__vertical-label">Web Design</span>
+            </div>
+
+            <!-- 2. 우측 열 (설명 + 히어로 이미지 배너 + 핀 고정 맥북 목업) 스크롤 -->
+            <div class="project__main">
+                <!-- 2-1) 설명 영역 -->
+                <div class="project__right">
+                    <div class="project__desc">
+                        <p class="project__desc-label project__label">Description</p>
+                        <p class="project__desc-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
+                    </div>
+                    <div class="project__year">
+                        <p class="project__label">Year</p>
+                        <p class="project__year-value">2026.08</p>
+                    </div>
+                </div>
+                <!-- 2-2) 히어로 이미지 + 스크롤 진행률 인디케이터 -->
+                <div class="project__hero">
+                    <div class="project__hero-image"></div>
+                    <div class="project__scroll-indicator">
+                        <span class="project__scroll-percent">0%</span>
+                    </div>
+                    <p class="project__scroll-label">Scroll</p>
+                </div>
+                <!-- 2-3) 핀 고정 맥북 목업 -->
+                <div class="project__mockup-section">
+                    <div class="project__laptop-mockup">
+                    <!-- 1) 실제로 긴 이미지 스크롤이 들어가는 디스플레이 화면 -->
+                        <div class="project__laptop-screen">
+                            <img src="your-website-full.jpg" alt="웹사이트 전체 캡처" class="project__laptop-site" />
+                        </div>
+                    <!-- 2) 맥북 베젤 PNG 이미지 (안쪽 화면 부분이 투명하게 뚫린 PNG) -->
+                    <img src="./images/Pro 16.png" alt="맥북 프레임" class="project__laptop-frame" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

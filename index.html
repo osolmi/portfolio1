@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <script src="./scripts/index.js" defer></script>
+</head>
+<body class="has-slides">
+    <!-- 전역 커스텀 커서 -->
+    <div class="cursor" id="cursor">
+        <span class="cursor__label"></span>
+    </div>
+    <!-- 공통 고정 네비게이션 -->
+    <header class="nav">
+        <!-- <a href="#slide-0" class="nav__logo">Portfolio<sup>2026</sup></a> -->
+        <a href="#slide-0" class="nav__logo"><img src="./images/nav_logo.png" alt="logo"></a>
+        <a href="#slide-0" class="nav__mark" aria-label="홈으로 이동"><!-- 로고svg --></a>
+        <nav class="nav__links">
+            <a href="#slide-1">About</a>
+            <a href="#slide-2">Work</a>
+            <a href="#slide-3">Graphic</a>
+        </nav>
+    </header>
+    <!-- 세로 슬라이드 wrapper scroll-snap -->
+    <main class="slide-wrapper">
+        <!-- ================= Cover ================= -->
+        <section class="slide slide--cover" id="slide-0">
+            <h1 class="cover__wordmark">Portfolio<sup>2026</sup></h1>
+            <p class="cover__scroll">Scroll</p>
+        </section>
+        <!-- ================= About ================= -->
+        <section class="slide slide--about" id="slide-1">
+            <div class="about__visual">
+                <div class="about__photo">
+                </div>
+            </div>
+            <div class="about__content">
+                <h2>About<br>Me</h2>
+                <!-- 이름, 인적사항, 타임라인 -->
+                <div class="about__profile">
+                    <p class="name">Oh Solmi<sup>오솔미</sup></p>
+                    <ul class="info">
+                        <li class="birth">2004.12.02</li>
+                        <li>인천광역시 부평구</li>
+                        <li>osmohsolmi@gmail.com</li>
+                    </ul>
+                    <ul class="timeline">
+                        <li>
+                            <span class="year">2020.12</span>
+                            <span class="desc">부평여자고등학교</span>
+                        </li>
+                        <li>
+                            <span class="year">2023.02</span>
+                            <span class="desc">동양미래대학교</span>
+                        </li>
+                        <li>
+                            <span class="year">2026.06</span>
+                            <span class="desc">그린컴퓨터아트학원</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="about__software">
+                    <p class="about__section-label">Software</p>
+                    <ul class="about__tools">
+                        <li>
+                            <span class="tool-name">Figma</span>
+                            <div class="dots level-6">
+                                <i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="tool-name">Illustrator</span>
+                            <div class="dots level-6">
+                                <i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="tool-name">Photoshop</span>
+                            <div class="dots level-5">
+                                <i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="tool-name">Indesign</span>
+                            <div class="dots level-5">
+                                <i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="tool-name">HTML</span>
+                            <div class="dots level-5">
+                                <i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="tool-name">CSS</span>
+                            <div class="dots level-5">
+                                <i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="tool-name">JavaScript</span>
+                            <div class="dots level-3">
+                                <i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="tool-name">PremierPro</span>
+                            <div class="dots level-2">
+                                <i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="tool-name">Blender</span>
+                            <div class="dots level-2">
+                                <i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- ================= Work ================= -->
+        <section class="slide slide--work" id="slide-2">
+            <div class="works-index"><img src="./images/sirloin.jpg" alt="">
+                <!-- JS 반복 -->
+            </div>
+        </section>
+        <!-- ================= Graphic ================= -->
+        <section class="slide slide--graphic" id="slide-3">
+            <div class="graphic-scroll">
+                <h2>Graphic<sup>2026</sup></h2>
+                <div class="graphic__body">
+                    <ul class="graphic__list">
+                        <!-- JS 반복 -->
+                    </ul>
+                    <div class="graphic__poster"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

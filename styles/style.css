@@ -1,0 +1,623 @@
+:root{
+    --white: #fff;
+    --black: #000;
+    --gray: #828282;
+    --point: #ffa32c;
+
+    --font-xxs:0.688rem;
+    --font-xs:0.875rem;/* 14px */
+    --font-s:1rem;
+    --font-m:1.25rem;/* 20px */
+
+    --nav-h: 64px;
+    --padding:3.125rem;
+    --panel-padding:40px;
+}
+
+*{ box-sizing: border-box; margin:0; padding:0; }
+
+html, body{
+    height: 100%;
+}
+body.has-slides{
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+/* 전역 커스텀 커서 */
+body{
+    cursor:auto;/* OS 데스크탑 기본 커서 숨김 */
+}
+a, button, [data-cursor]{
+    cursor:auto;
+}
+@media (hover:none){
+    body{cursor:auto;}/* 터치 기기는 유지 */
+}
+
+.cursor{
+    position: fixed;
+    top: 0; left: 0;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background:transparent;
+    backdrop-filter: invert(1); /* 커서 뒤 화면 픽셀 컬러 반전 */
+    -webkit-backdrop-filter: invert(1);/* safari 용 */
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s cubic-bezier(.16,1,.3,1), height .3s cubic-bezier(.16,1,.3,1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* @media (hover: none){
+    .cursor{display: none;}
+} */
+
+.cursor.is-hovering{
+    width: 76px;
+    height: 30px;
+    border-radius: 999px;
+    background: none;
+    border: 1px solid #ffffff !important;
+    backdrop-filter: invert(1); /* 커서 뒤 화면 픽셀 컬러 반전 */
+    -webkit-backdrop-filter: invert(1);/* safari 용 */
+}
+
+/* 커서 옵션 B - 포인트 컬러 버전 */
+.cursor .is-solid{
+    background: var(--point);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+.cursor .is-solid .cursor__label{
+    color: var(--white);
+    mix-blend-mode: normal;
+}
+
+.cursor__label{
+    font-size: 12px;
+    letter-spacing:0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+.cursor.is-hovering .cursor__label{
+    opacity: 1;
+}
+
+/* 전 페이지 공통 NAV */
+.nav{
+    background: transparent;
+    mix-blend-mode: difference;
+    color: #fff;
+    height: var(--nav-h);
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 50px;
+}
+
+.nav__logo img{/* png버전 */
+    width:10.813em; height: auto;
+}
+.nav__logo sup{
+    font-size: 0.625rem; font-weight:300;
+} */
+
+.nav__links{display: flex; gap: 150px;}
+/* 중앙 로고 마크 자리 — 실제 로고로 교체 전까지 회색 네모로 표시 */
+/* .nav__mark{
+    width: 90px;
+    height: 60px;
+    background: var(--gray);
+    display: block;
+    position:absolute; left: 50%; top:50%;
+    transform:translate(-50%,-50%);
+} */
+
+/* ------------------------slide wrapper - 세로 scroll */
+.slide-wrapper{
+    height: 100vh;
+    height: 100svh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    
+    /* 스크롤 기능은 유지하되, 브라우저 기본 스크롤바만 시각적으로 숨김
+     (브라우저마다 숨기는 속성이 달라서 3개 다 필요함) */
+    scrollbar-width: none;       /* Firefox */
+    -ms-overflow-style: none;    /* 구형 Edge/IE */
+}
+.slide-wrapper::-webkit-scrollbar{
+  display: none;               /* Chrome, Safari, 최신 Edge */
+}
+
+.slide{
+    height: 100vh;
+    height: 100svh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    /* padding:50px; */
+    overflow: hidden;
+}
+
+/* ================= Cover ================= */
+.slide--cover{
+    display: flex; flex-direction: column;
+    justify-content:center; align-items:center;
+    height: 100vh; padding-bottom:var(--padding);
+}
+.cover__wordmark {
+    font-family: 'Nohemi', sans-serif;
+    font-size: 9.375rem; /* 150px 반응형 대응 */
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: #000;
+    position: relative;
+    display: inline-flex;
+    align-items: flex-start;
+    margin-top: auto;
+}
+.slide--cover h1 sup{
+    font-family: 'Nohemi', sans-serif;
+    font-size:1rem; font-weight:300;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    margin-left: 0.2em;
+    top: 0.2em;
+    position: relative;
+}
+.slide--cover .cover__scroll{
+    font-size: var(--font-xs);
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto;
+    opacity: 0.6;
+}
+
+.slide--cover .cover__scroll::after{
+    content: '';
+    display: block;
+    width: 0.8px;
+    height: 30px;
+    background-color: var(--black);
+    opacity: 0.6;
+}
+/* ================= About ================= */
+/* 1. 슬라이드 기본 레이아웃 */
+.slide--about {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 clamp(40px, 8vw, 160px);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* 2. Absolute 고정: About Me 타이틀 (오토레이아웃 무시) */
+.slide--about h2 {
+    position: absolute;
+    top: clamp(80px, 15vh, 80px);
+    left: clamp(40px, 8vw, 160px);
+    font-family: 'Nohemi', sans-serif;
+    font-size: clamp(4rem, 7.5vw, 6rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: #000000;
+    margin: 0;
+    z-index: 10;
+}
+
+/* 3. 메인 콘텐츠 컨테이너 (비주얼 이미지 + 프로필 + 소프트웨어) */
+.slide--about .about__visual {
+    display: flex;
+    align-items: flex-end;
+}
+
+/* 이미지 박스 */
+.about__photo {
+    width: clamp(260px, 22vw, 380px);
+    height: clamp(340px, 29vw, 500px);
+    background-color: #d9d9d9; /* 프로필 사진 들어갈 가이드 영역 */
+    border-radius: 2px;
+    margin-right: clamp(40px, 5vw, 90px);
+    margin-top: clamp(60px, 10vh, 140px); /* H2 타이틀 아래 배치되도록 조율 */
+}
+
+/* 4. 오른쪽 콘텐츠 영역 (프로필 + 소프트웨어 그리드) */
+.about__content {
+    display: flex;
+    align-items: flex-end;
+    gap: clamp(40px, 6vw, 100px);
+    margin-top: clamp(60px, 10vh, 140px);
+}
+
+/* ----------------------------------------- 4-1) Profile (이름, 인적사항, 타임라인) */
+.about__profile {
+    display: flex;
+    flex-direction: column;
+    min-width: 160px;
+}
+
+/* 이름 */
+.about__profile .name {
+    font-family: 'Nohemi', -apple-system, sans-serif;
+    font-size: clamp(1.5rem, 2vw, 2.5rem);
+    font-weight: 400;
+    color: #000000;
+    margin: 0 0 1.3rem 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+}
+
+.about__profile .name sup {
+    font-size: var(--font-xs);
+    font-weight: 400;
+    color: #000000;
+    vertical-align: top;
+}
+
+/* 인적사항 목록 */
+.about__profile .info {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+.about__profile .info .birth {
+    font-family: 'Nohemi';
+    font-weight: 300;
+    line-height: 1;
+}
+.about__profile .info li {
+    font-size: 0.875rem;
+    color: #000000;
+}
+
+/* 타임라인 (학력/경력) */
+.about__profile .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.about__profile .timeline li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.about__profile .timeline .year {
+    font-family: 'Nohemi';
+    font-size: var(--font-xs);
+    color: #000000;
+    font-weight: 300;
+}
+
+.about__profile .timeline .desc {
+    font-size: var(--font-xs);
+    color: #000000;
+}
+
+/* software */
+.about__software {
+    display: flex;
+    flex-direction: column;
+    min-width: 280px;
+}
+
+.about__section-label {
+    font-family: 'Nohemi';
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: #000000;
+    margin-bottom: 1.5rem;
+}
+
+.about__tools {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.about__tools li {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+}
+
+/* 툴 이름 */
+.about__tools .tool-name {
+    font-size: 0.875rem;
+    color: #000000;
+    width: 90px; /* 정렬 기준 너비 고정 */
+    flex-shrink: 0;
+}
+
+/* 6개의 숙련도 Dot 영역 */
+.dots {
+    display: flex;
+    gap: 9px;
+}
+
+.dots i {
+    width: 7px;  /* [여기서 점 크기 조절] */
+    height: 7px; /* [여기서 점 크기 조절] */
+    border-radius: 50%;
+    background-color: #d9d9d9; /* 기본 회색 점 */
+}
+
+/* 레벨에 따라 검은색으로 채우기 */
+.dots.level-6 i:nth-child(-n+6),
+.dots.level-5 i:nth-child(-n+5),
+.dots.level-4 i:nth-child(-n+4),
+.dots.level-3 i:nth-child(-n+3),
+.dots.level-2 i:nth-child(-n+2),
+.dots.level-1 i:nth-child(-n+1) {
+  background-color: #000000; /* 활성화된 검은색 점 */
+}
+/* ================= Work ================= */
+.slide--works{ padding: 0;}
+.works-index{
+    display: flex;
+    height: 100%;
+}
+.works-index__panel{
+    flex: 1;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    /* background-color: #ffa32c; */
+    /* border-right: 1px solid var(--line); */
+    padding: var(--panel-padding);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    cursor: none; /* 커스텀 커서로 대체 */
+    transition: flex .7s cubic-bezier(.16,1,.3,1);
+}
+.works-index__panel:last-child{ border-right: none; }
+.panel__thumb{
+    position: absolute;
+    inset: 0;
+    background:#828282; /* 실제 이미지 준비되면 background-image로 교체 */
+    background-size: cover;
+    background-position: center;
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path .8s cubic-bezier(.16,1,.3,1);
+}
+.works-index__panel:hover .panel__thumb{
+    clip-path: inset(0 0 0 0);
+}
+
+.panel__num{
+    position: absolute;
+    top: var(--nav-h); left: var(--panel-padding);
+    z-index: 1;
+    font-family: 'Nohemi', sans-serif;
+    font-size: 48px; font-weight: 200;
+    color: var(--black);
+}
+
+.panel__category{
+    position: absolute;
+    top: 50%; left: var(--panel-padding);
+    z-index: 1;
+    writing-mode: vertical-rl;
+    font-size: var(--font-xxs);
+    transform: rotate(180deg);
+    color: var(--gray);
+}
+
+.panel__arrow{
+    position: absolute;
+    top: var(--nav-h); right:var(--panel-padding);
+    z-index: 1;
+    font-size: 18px;
+    color: var(--black);
+    opacity: 0;
+    transform: translate(-4px, 4px);
+    transition: opacity .3s ease, transform .3s ease;
+}
+.works-index__panel:hover .panel__arrow{
+    opacity: 1;
+    transform: translate(0, 0); /* hover 시 살짝 미끄러지듯 제자리로 등장 */
+}
+
+.panel__title{
+    position: relative;
+    z-index: 1;
+    width: 12rem;
+    font-family: 'Nohemi', sans-serif;
+    font-size: 2.75rem;
+    font-weight: 400;
+}
+
+.panel__tag{
+    position: absolute;
+    bottom: var(--panel-padding); right: var(--panel-padding);
+    z-index: 1;
+    font-size: 12px;
+    color: var(--gray);
+}
+/* ================= Work Hover Text Color Transition ================= */
+
+/* 1. 텍스트 요소들에 Smooth한 색상 변화 transition 추가 */
+.panel__num,
+.panel__category,
+.panel__arrow,
+.panel__title,
+.panel__tag {
+    transition: color 0.4s cubic-bezier(.16,1,.3,1), 
+                opacity 0.3s ease, 
+                transform 0.3s ease;
+}
+
+/* 2. 판넬 호버 시 내부 텍스트 전체를 흰색(#fff)으로 전환 */
+.works-index__panel:hover .panel__num,
+.works-index__panel:hover .panel__category,
+.works-index__panel:hover .panel__arrow,
+.works-index__panel:hover .panel__title,
+.works-index__panel:hover .panel__tag {
+    color: #ffffff !important;
+}
+@media (hover: none){
+  /* 터치 기기: hover 확장 연출 비활성화, 탭하면 바로 이동 */
+    .works-index:has(.works-index__panel:hover) .works-index__panel,
+    .works-index:has(.works-index__panel:hover) .works-index__panel:hover{
+        flex: 1;
+    }
+}
+/* ================= Graphic ================= */
+:root{
+    --graphic-top-pad: 100px;   /* nav 높이 감안한 상단 여백 */
+    --graphic-bottom-pad: 40px;
+    --graphic-thumb-w: 80px;    /* 넘버 리스트 썸네일 크기 */
+    --graphic-thumb-h: 115px;
+    --graphic-num-w: 32px;
+}
+
+.slide--graphic{
+    overflow: hidden;
+    padding: 0;
+}
+
+/* 이제 이 요소 자체는 스크롤되지 않음 — 타이틀/포스터가 고정되어 보이는 이유.
+   실제 스크롤은 안쪽 .graphic__list 하나만 담당 */
+.graphic-scroll{
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+    gap: 80px;
+    padding: 0 40px; /* 상하 여백 제거 — 리스트가 nav 뒤로 지나가도 되므로 */
+    box-sizing: border-box;
+}
+
+/* 타이틀 — 세로 가운데 정렬 (내용이 짧아 h2 자체를 flex로 만들어 중앙 배치) */
+.graphic-scroll h2{
+    font-family: 'Nohemi';
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    font-size: clamp(48px, 6vw, 4rem);
+    font-weight: 400;
+}
+.graphic-scroll h2 sup{
+    font-family: 'Nohemi', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;        /* 300은 이 크기에서 너무 얇아 흐릿해 보일 수 있음, 아래 설명 */
+    letter-spacing: 0.05em;
+    line-height: 1;
+    margin-left: 0.2em;
+    vertical-align: top;
+}
+
+.graphic__body{
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: stretch;
+    gap: 60px;
+}
+
+/* ---- 넘버 리스트: 유일하게 스크롤되는 컬럼 ----
+   nav보다 아래 z-index라 스크롤 시 nav 뒤로 지나가도 되는 컬럼이라,
+   상하 padding을 nav 여백 없이 "전체 화면 높이 기준"으로 계산함 —
+   그래야 01번이 화면 맨 위(=nav 뒤)까지 스크롤됐을 때도 정확히 화면 정중앙에 옴.
+   %는 padding-top/bottom에서 "부모의 너비" 기준으로 계산되는 CSS 함정이 있어서
+   반드시 vh 기반 calc()로 계산해야 함 */
+.graphic__list{
+    width: calc(var(--graphic-thumb-w) + var(--graphic-num-w));
+    flex-shrink: 0;
+    height: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y proximity;
+    padding: calc((100vh - var(--graphic-thumb-h)) / 2) 0;
+    list-style: none;
+    position: relative;
+    z-index: 1; /* nav(z-index:100)보다는 낮게, 다른 콘텐츠보다는 위 */
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.graphic__list::-webkit-scrollbar{ display: none; }
+
+.graphic__thumb-wrap{
+    position: relative;
+    width: var(--graphic-thumb-w);
+    height: var(--graphic-thumb-h);
+    margin: 14px 0 14px var(--graphic-num-w);
+    scroll-snap-align: center;
+    cursor: pointer;
+}
+
+.graphic__num{
+    position: absolute;
+    left: calc(var(--graphic-num-w) * -1 + 4px);
+    top: 0;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--black, #17171A);
+}
+
+.graphic__thumb{
+    width: 100%; height: 100%;
+    background: var(--white, #DCD8CE);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.35;
+    filter: grayscale(70%);
+    transform: scale(0.9);
+    transition: opacity .35s ease, filter .35s ease, transform .35s cubic-bezier(.16,1,.3,1);
+}
+.graphic__thumb-wrap.is-active .graphic__thumb{
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1);
+}
+
+/* ---- 우측 포스터 프리뷰: 너비만 고정, 높이는 nav 쪽으로 안 넘치게 캡 ----
+    .graphic-scroll의 상하 padding을 없앴기 때문에(리스트가 nav 뒤로 지나가야 해서),
+    포스터는 스스로 상하 padding을 가져서 nav 여백을 확보함.
+    background-origin이 기본값(padding-box)이라, 이 padding만큼 이미지도 안쪽으로
+    들어와서 그려짐 — 별도 처리 없이 이미지도 같이 nav를 피해감.
+    포스터 실제 비율(A4, 720×1280 등)이 제각각이라 background-size:contain으로
+    박스 안에서 레터박스 처리 — 잘리지 않고 항상 온전히 다 보임 */
+.graphic__poster{
+    width: 380px;
+    flex-shrink: 0;
+    height: 100%;
+    box-sizing: border-box;
+    padding: var(--graphic-top-pad) 0 var(--graphic-bottom-pad);
+    background: var(--line, #DCD8CE);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+@media (max-width: 900px){
+    .graphic-scroll{ flex-direction: column; gap: 24px; }
+    .graphic__body{ flex-direction: row; }
+    .graphic__poster{ width: 60%; }
+}

@@ -1,0 +1,225 @@
+:root{
+  --row1-h: 10rem;     /* 타이틀 / 설명, 양쪽이 공유하는 1행 높이 */
+  --row-gap: 3.75rem;  /* 1행 다음 요소(Links / Hero)까지의 간격, 양쪽 공유 */
+  --top-pad: 4.44rem;  /* 좌/우 컬럼이 공유하는 시작 padding-top */
+}
+
+.project{
+    max-width: 1920px;
+    padding-top: 0rem;
+    position: relative;
+    padding-left: var(--padding);
+}
+.project__body{
+    display: grid;
+    grid-template-columns: clamp(320px, 26vw, 500px) 1fr;
+    align-items: start;
+    gap: var(--padding);
+}
+
+/* ---- 좌측 컬럼 ---- */
+.project__info{
+    flex-shrink: 0;
+    width: clamp(320px, 26vw, 500px);
+    position: sticky;
+    top: 3.313rem;
+    height: calc(100vh - 3.313rem);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding-bottom: 3rem;
+    z-index: 10;
+}
+
+.project__header{
+    position: relative; /* back 버튼을 절대좌표로 띄우는 기준 */
+    /* padding-top: var(--top-pad); */
+    /* height: var(--top-pad); */
+}
+/* back 버튼은 title-group 높이에 영향 안 주도록 떠 있게 처리 —
+   그래야 좌/우 padding-top 이후 바로 row1-h가 시작된다는 전제가 깨지지 않음 */
+.project__back{
+    position:absolute;
+    top: 10px;
+    left: 0;
+    width: 2.13rem; height: 2.13rem;
+    display: inline-block;
+}
+.project__back img{ width: 100%; height: auto; }
+
+.project__title-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 타이틀은 이 박스 하단에 정렬 */
+    padding-top: 90px;
+    height: 290px;
+    /* margin-bottom: 50px; */
+}
+.project__title-row{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+.project__title{
+    font-family: 'Nohemi', sans-serif;
+    font-size: 3.75rem;
+    line-height: 1.1;
+}
+.project__num{
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.project__meta{ margin-top: 0; }
+.project__meta > div{ margin-bottom: 16px; }
+.project__meta dt,
+.project__label{
+    color: var(--gray);
+    font-size: 13px;
+    margin-bottom: 0.4rem;
+}
+.project__links{
+    display: flex;
+    gap: 16px;
+}
+.project__links a img {width: 13px; height: 13px;}
+
+.project__vertical-label{
+    position: absolute;
+    bottom: var(--padding);
+    left: 0;
+    writing-mode: vertical-rl;
+    font-size: var(--font-xxs);
+    color: var(--gray);
+    transform: rotate(180deg);
+}
+
+/* ---- 우측 컬럼 ---- */
+.project__main{
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+.project__right{
+    position: relative; /* project__year를 absolute로 띄우는 기준 */
+    padding-top: 90px;
+    height: 230px;
+    margin-bottom: 50px;
+}
+.project__desc{
+    /* height: var(--row1-h); */
+    overflow: hidden;
+    margin-bottom:18px;
+    padding-right: 130px;
+}
+.project__desc-text{
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+}
+/* Year는 흐름에서 빼서 Hero 시작 위치에 영향 안 주게 함 —
+   HTML 순서(desc 다음 year)는 그대로 두고, 시각적 위치만 desc 바로 아래로 지정 */
+.project__year{
+
+}
+
+/* ---- 히어로 이미지 (이전에 유실됐던 속성 전부 복원 + 정렬 시스템 반영) ---- */
+.project__hero{
+    position: relative;
+    width: 100%;
+    /* margin-top: var(--row-gap); */
+    overflow: hidden;
+    height: calc(100vh - 3.313rem - var(--top-pad) - var(--row1-h) - var(--row-gap));
+    }
+    .project__hero-image{
+    background-color: aliceblue;
+    width: 100%; height: 100%;
+}
+
+/* ---- 스크롤 인디케이터: 뷰포트 우측 상단 고정 + 커서와 같은 반전 효과 ---- */
+.project__scroll-indicator{
+    position: fixed;
+    top: var(--padding); right: var(--padding);
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: transparent;
+    backdrop-filter: invert(1);
+    -webkit-backdrop-filter: invert(1);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+}
+.project__scroll-indicator span{
+    font-size: 1.5rem; font-weight: 600;
+    color: #fff;
+    mix-blend-mode: difference; /* 반전된 배경 위에서도 항상 읽히게 */
+}
+.project__scroll-label{
+    position: absolute;
+    bottom: 20px; left: 50%;
+    color: var(--white);
+    font-size: 12px;
+}
+
+/* --------------------------------------------------------------------------
+    2-3) 핀 고정 맥북 목업 스크롤 스타일 (90% 축소 & 중앙 정렬)
+-------------------------------------------------------------------------- */
+
+/* 스크롤 애니메이션 트랙 공간 */
+.project__mockup-section {
+    position: relative;
+    width: 100%;
+    height: 250vh;
+    margin-top: 450px;
+}
+
+/* 화면 중앙에 핀 고정되는 맥북 전체 컨테이너 */
+.project__laptop-mockup {
+    position: sticky;
+    top: 50vh;
+    transform: translateY(-50%); /* 세로 중앙 정렬 */
+    width: 100%;
+    max-width: 960px;
+    aspect-ratio: 16 / 10;
+    margin: 0 auto;
+}
+
+/* 1. 맥북 프레임 이미지 (90% 축소 + 중앙 정렬) */
+.project__laptop-frame {
+    position: absolute;
+    /* top/left 5%와 transform을 사용해 정중앙으로 배치합니다 */
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    pointer-events: none; /* 클릭 이벤트 투과 */
+    z-index: 2;
+    object-fit: contain;
+}
+
+/* 2. 맥북 디스플레이 화면 영역 (90% 축소된 프레임 위치에 맞춰 중앙 정렬) */
+.project__laptop-screen {
+    position: absolute;
+    /* 프레임이 90%로 줄어들고 중앙에 위치함에 따라 내부 위치도 함께 조정 */
+    top: 11.1%;
+    left: 15.6%;
+    width: 68.8%;   /* (기존 76.4% * 0.9) */
+    height: 74.7%;  /* (기존 83% * 0.9) */
+    overflow: hidden;
+    border-radius: 4px;
+    background-color: #1a1a1a;
+    z-index: 1;     /* 프레임(z-index: 2) 밑으로 배치 */
+}
+
+/* 세로로 길게 캡처된 실제 홈페이지 이미지 */
+.project__laptop-site {
+    width: 100%;
+    height: auto;
+    display: block;
+    will-change: transform;
+}
