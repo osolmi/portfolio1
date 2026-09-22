@@ -58,7 +58,7 @@ const projects = [
         category: 'Web Design',
         title: 'Sirloin',
         tag: 'Redesign',
-        href: 'project-sirloin.html',
+        href: './project-sirloin.html',
         thumb: './images/sirloin.jpg', // 준비되면 이미지 경로 입력 (예: assets/img/sirloin/thumb.webp)
     },
     {
@@ -66,7 +66,7 @@ const projects = [
         category: 'Web Design',
         title: 'Herman Miller',
         tag: 'Redesign',
-        href: 'project-hermanmiller.html',
+        href: './project-hermanmiller.html',
         thumb: './images/hermanmiller.jpg',
     },
     {
@@ -74,7 +74,7 @@ const projects = [
         category: 'Web Design',
         title: 'Not cute Anymore',
         tag: 'New Identity',
-        href: 'project-notcuteanymore.html',
+        href: './project-notcuteanymore.html',
         thumb: './images/notcuteanymore2.jpg',
     },
     {
@@ -82,7 +82,7 @@ const projects = [
         category: 'Web Design',
         title: 'Blue Elephant', // 아직 미정
         tag: 'Redesign',
-        href: 'project-blueelephant.html',
+        href: './project-blueelephant.html',
         thumb: './images/blueelephant.jpg',
     },
 ];
@@ -103,15 +103,15 @@ const worksIndex = document.querySelector('.works-index');
 }
 
 /* ==========================================================
-   GRAPHIC — 포스터 데이터
-   포스터 완성되는 대로 img 경로만 채우면 됨 (빈 문자열이면 회색 박스 유지)
+    GRAPHIC — 포스터 데이터
+    포스터 완성되는 대로 img 경로만 채우면 됨 (빈 문자열이면 회색 박스 유지)
    ========================================================== */
 const posters = [
-  { num: '01', img: '' },
-  { num: '02', img: '' },
-  { num: '03', img: '' },
-  { num: '04', img: '' },
-  { num: '05', img: '' },
+    { num: '01', img: '' },
+    { num: '02', img: '' },
+    { num: '03', img: '' },
+    { num: '04', img: '' },
+    { num: '05', img: '' },
 ];
 
 const graphicListEl = document.querySelector('.graphic__list');
