@@ -103,8 +103,8 @@
 }
 .project__right{
     position: relative; /* project__year를 absolute로 띄우는 기준 */
-    padding-top: 90px;
-    height: 230px;
+    padding-top: 8.938rem;
+    height: auto;
     margin-bottom: 50px;
 }
 .project__desc{
@@ -140,30 +140,36 @@
 }
 
 /* ---- 스크롤 인디케이터: 뷰포트 우측 상단 고정 + 커서와 같은 반전 효과 ---- */
-.project__scroll-indicator{
+/* 1. 원형 인디케이터 컨테이너 (배경 투명화) */
+.project__scroll-indicator {
     position: fixed;
-    top: var(--padding); right: var(--padding);
-    width: 120px; height: 120px;
+    bottom: var(--padding); 
+    right: var(--padding);
+    width: 150px; 
+    height: 150px;
     border-radius: 50%;
-    background: transparent;
-    backdrop-filter: invert(1);
-    -webkit-backdrop-filter: invert(1);
-    border: none;
+    
+    background: transparent !important;
+    
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+
+    border: 1px solid #ffffff;
+    mix-blend-mode: difference;
+    
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 50;
+    pointer-events: none; /* 스크롤/클릭 투과가 필요한 경우 */
 }
-.project__scroll-indicator span{
-    font-size: 1.5rem; font-weight: 600;
-    color: #fff;
-    mix-blend-mode: difference; /* 반전된 배경 위에서도 항상 읽히게 */
-}
-.project__scroll-label{
-    position: absolute;
-    bottom: 20px; left: 50%;
-    color: var(--white);
-    font-size: 12px;
+.project__scroll-percent {font-size: 2rem; font-weight: 100;}
+/* 2. 내부 자식 텍스트들 (글자 반전 처리) */
+.project__scroll-indicator *,
+.project__scroll-percent,
+.project__scroll-label {
+    color: #ffffff !important;
+    mix-blend-mode: difference;
 }
 
 /* --------------------------------------------------------------------------
@@ -174,7 +180,7 @@
 .project__mockup-section {
     position: relative;
     width: 100%;
-    height: 250vh;
+    height: 2400vh;
     margin-top: 450px;
 }
 
@@ -206,10 +212,10 @@
 .project__laptop-screen {
     position: absolute;
     /* 프레임이 90%로 줄어들고 중앙에 위치함에 따라 내부 위치도 함께 조정 */
-    top: 11.1%;
-    left: 15.6%;
-    width: 68.8%;   /* (기존 76.4% * 0.9) */
-    height: 74.7%;  /* (기존 83% * 0.9) */
+    top: 10.1%;
+    left: 14.6%;
+    width: 70.8%;   /* (기존 76.4% * 0.9) */
+    height: 74%;  /* (기존 83% * 0.9) */
     overflow: hidden;
     border-radius: 4px;
     background-color: #1a1a1a;

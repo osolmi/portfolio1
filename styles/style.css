@@ -18,6 +18,7 @@
 
 html, body{
     height: 100%;
+    background-color: #fff;
 }
 body.has-slides{
     overflow: hidden;
@@ -34,34 +35,35 @@ a, button, [data-cursor]{
     body{cursor:auto;}/* 터치 기기는 유지 */
 }
 
-.cursor{
+/* 백드롭 필터를 활용한 100% 확실한 Invert 반전 방식 */
+.cursor {
     position: fixed;
     top: 0; left: 0;
     width: 12px; height: 12px;
     border-radius: 50%;
-    background:transparent;
-    backdrop-filter: invert(1); /* 커서 뒤 화면 픽셀 컬러 반전 */
-    -webkit-backdrop-filter: invert(1);/* safari 용 */
+    
+    /* 배경색을 투명으로 두고 아래 레이어 픽셀을 직접 반전 */
+    background: transparent !important;
+    backdrop-filter: invert(100%) !important;
+    -webkit-backdrop-filter: invert(100%) !important; /* Safari 지원 */
+    
     pointer-events: none;
-    z-index: 9999;
+    z-index: 999999;
     transform: translate(-50%, -50%);
     transition: width 0.3s cubic-bezier(.16,1,.3,1), height .3s cubic-bezier(.16,1,.3,1);
     display: flex;
     align-items: center;
     justify-content: center;
 }
-/* @media (hover: none){
-    .cursor{display: none;}
-} */
 
-.cursor.is-hovering{
+.cursor.is-hovering {
     width: 76px;
     height: 30px;
     border-radius: 999px;
-    background: none;
-    border: 1px solid #ffffff !important;
-    backdrop-filter: invert(1); /* 커서 뒤 화면 픽셀 컬러 반전 */
-    -webkit-backdrop-filter: invert(1);/* safari 용 */
+    border: #fff solid 1px;
+    background: transparent !important;
+    backdrop-filter: invert(100%) !important;
+    -webkit-backdrop-filter: invert(100%) !important;
 }
 
 /* 커서 옵션 B - 포인트 컬러 버전 */
@@ -88,14 +90,12 @@ a, button, [data-cursor]{
 }
 
 /* 전 페이지 공통 NAV */
-.nav{
-    background: transparent;
-    mix-blend-mode: difference;
-    color: #fff;
-    height: var(--nav-h);
+header.nav{
     position: fixed;
+    background: transparent;
+    height: var(--nav-h); width: 100%;
     top: 0; left: 0; right: 0;
-    z-index: 1000;
+    z-index: 10000;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -109,7 +109,7 @@ a, button, [data-cursor]{
     font-size: 0.625rem; font-weight:300;
 } */
 
-.nav__links{display: flex; gap: 150px;}
+header.nav .nav__links {display: flex; gap: 20rem;}
 /* 중앙 로고 마크 자리 — 실제 로고로 교체 전까지 회색 네모로 표시 */
 /* .nav__mark{
     width: 90px;
@@ -538,7 +538,7 @@ a, button, [data-cursor]{
     min-width: 0;
     display: flex;
     align-items: stretch;
-    gap: 60px;
+    gap: 200px;
 }
 
 /* ---- 넘버 리스트: 유일하게 스크롤되는 컬럼 ----
@@ -578,22 +578,20 @@ a, button, [data-cursor]{
     top: 0;
     font-size: 12px;
     font-weight: 400;
-    color: var(--black, #17171A);
+    /* color: var(--black, #17171A); */
 }
 
 .graphic__thumb{
     width: 100%; height: 100%;
-    background: var(--white, #DCD8CE);
     background-size: cover;
     background-position: center;
-    opacity: 0.35;
-    filter: grayscale(70%);
-    transform: scale(0.9);
+    opacity: 0.6;
+    filter: none;
+    transform: scale(0.95);
     transition: opacity .35s ease, filter .35s ease, transform .35s cubic-bezier(.16,1,.3,1);
 }
 .graphic__thumb-wrap.is-active .graphic__thumb{
     opacity: 1;
-    filter: grayscale(0%);
     transform: scale(1);
 }
 
@@ -610,14 +608,19 @@ a, button, [data-cursor]{
     height: 100%;
     box-sizing: border-box;
     padding: var(--graphic-top-pad) 0 var(--graphic-bottom-pad);
-    background: var(--line, #DCD8CE);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+}
+.graphic__poster img,
+.graphic__poster video{
+    width: 100%;
+    display: block;
 }
 
 @media (max-width: 900px){
-    .graphic-scroll{ flex-direction: column; gap: 24px; }
+    .graphic-scroll{ flex-direction: column; gap: 16px; }
     .graphic__body{ flex-direction: row; }
     .graphic__poster{ width: 60%; }
 }

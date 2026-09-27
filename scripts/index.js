@@ -107,11 +107,26 @@ const worksIndex = document.querySelector('.works-index');
     포스터 완성되는 대로 img 경로만 채우면 됨 (빈 문자열이면 회색 박스 유지)
    ========================================================== */
 const posters = [
-    { num: '01', img: '' },
-    { num: '02', img: '' },
-    { num: '03', img: '' },
-    { num: '04', img: '' },
-    { num: '05', img: '' },
+    { num: '01', media: [{ type: 'image', src: './images/poster/forgotten.jpg' }]},
+    { num: '02', media: [
+        { type: 'image', src: './images/poster/Dreamscape.jpg' }]},
+    {
+        num: '03',
+        poster: './images/poster/resonance.jpg',
+        media: [{ type: 'video', src: './images/poster/resonance.mp4' }]
+    },
+    {
+        num: '04',
+        poster: './images/poster/spring.jpg',
+        media: [{ type: 'video', src: './images/poster/spring.mp4' }]
+    },
+    { num: '04', media: [{ type: 'video', src: './images/poster/spring.mp4' }] },
+    { num: '05', media: [{ type: 'image', src: './images/poster/Dopamine.jpg' }] },
+    { num: '05', media: [
+        { type: 'image', src: './images/poster/hoam-mockup.jpg' },
+        { type: 'image', src: './images/poster/4-Fold Brochure Mockup.png' },
+        { type: 'image', src: './images/poster/4-Fold Brochure Mockup2.png' }
+    ] },
 ];
 
 const graphicListEl = document.querySelector('.graphic__list');
@@ -119,12 +134,15 @@ const posterPreviewEl = document.querySelector('.graphic__poster');
 
 /* ---- 배열 기반 렌더링 ---- */
 if (graphicListEl){
-    graphicListEl.innerHTML = posters.map((p, i) => `
+    graphicListEl.innerHTML = posters.map((p, i) => {
+        const first = p.media[0];
+        const thumbSrc = first.type === 'image' ? first.src : (p.poster || '');
+        return `
         <li class="graphic__thumb-wrap" data-index="${i}">
-        <span class="graphic__num">${p.num}</span>
-        <div class="graphic__thumb" style="${p.img ? `background-image:url('${p.img}')` : ''}"></div>
-        </li>
-    `).join('');
+            <span class="graphic__num">${p.num}</span>
+            <div class="graphic__thumb" style="${thumbSrc ? `background-image:url('${thumbSrc}')` : ''}"></div>
+        </li>`;
+    }).join('');
 }
 
 /* ---- 중앙 포커스 감지 ----
@@ -154,7 +172,11 @@ function updateActiveThumb(){
 
     const active = posters[closestIndex];
     if (active && posterPreviewEl){
-        posterPreviewEl.style.backgroundImage = active.img ? `url('${active.img}')` : '';
+        posterPreviewEl.innerHTML = active.media.map(m =>
+            m.type === 'video'
+                ? `<video src="${m.src}" autoplay muted loop playsinline></video>`
+                : `<img src="${m.src}" alt="">`
+        ).join('');
     }
 }
 
