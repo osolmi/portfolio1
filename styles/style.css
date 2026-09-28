@@ -137,6 +137,7 @@ header.nav .nav__links {display: flex; gap: 20rem;}
 }
 
 .slide{
+    position: relative;
     height: 100vh;
     height: 100svh;
     scroll-snap-align: start;
@@ -548,16 +549,17 @@ header.nav .nav__links {display: flex; gap: 20rem;}
    %는 padding-top/bottom에서 "부모의 너비" 기준으로 계산되는 CSS 함정이 있어서
    반드시 vh 기반 calc()로 계산해야 함 */
 .graphic__list{
+    position: absolute;
+    top: 0;
+    /* 리스트 폭 = 번호자리 + 썸네일. 썸네일 "중심"이 화면 50%에 오도록 왼쪽 끝을 계산 */
+    left: calc(50% - var(--graphic-num-w) - var(--graphic-thumb-w) / 2);
     width: calc(var(--graphic-thumb-w) + var(--graphic-num-w));
-    flex-shrink: 0;
     height: 100%;
     overflow-y: scroll;
     scroll-snap-type: y proximity;
     padding: calc((100vh - var(--graphic-thumb-h)) / 2) 0;
     list-style: none;
-    position: relative;
-    z-index: 1; /* nav(z-index:100)보다는 낮게, 다른 콘텐츠보다는 위 */
-
+    z-index: 1;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
@@ -567,7 +569,7 @@ header.nav .nav__links {display: flex; gap: 20rem;}
     position: relative;
     width: var(--graphic-thumb-w);
     height: var(--graphic-thumb-h);
-    margin: 14px 0 14px var(--graphic-num-w);
+    margin: 10px 0 10px var(--graphic-num-w);
     scroll-snap-align: center;
     cursor: pointer;
 }
@@ -603,24 +605,19 @@ header.nav .nav__links {display: flex; gap: 20rem;}
     포스터 실제 비율(A4, 720×1280 등)이 제각각이라 background-size:contain으로
     박스 안에서 레터박스 처리 — 잘리지 않고 항상 온전히 다 보임 */
 .graphic__poster{
-    width: 380px;
-    flex-shrink: 0;
-    height: 100%;
-    box-sizing: border-box;
-    padding: var(--graphic-top-pad) 0 var(--graphic-bottom-pad);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    overflow-y: auto;
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    /* 썸네일 오른쪽 끝(50% + 썸네일폭/2)에서 60px 띄운 지점부터 시작 */
+    left: calc(50% + var(--graphic-thumb-w) / 2 + 100px);
+    width: min(30rem, calc(50% - var(--graphic-thumb-w) / 2 - 60px - 40px));
+    /* 상하 padding을 "똑같이" 줘야, background-position:center로 그려지는 이미지의
+       세로 중심이 정확히 화면 세로 중앙과 일치함 (포스터 실제 높이와 무관) */
+    padding: var(--graphic-top-pad) 0;
+    background-size: contain;
 }
 .graphic__poster img,
 .graphic__poster video{
-    width: 100%;
+    width: min(30rem ,100%);
     display: block;
 }
 
-@media (max-width: 900px){
-    .graphic-scroll{ flex-direction: column; gap: 16px; }
-    .graphic__body{ flex-direction: row; }
-    .graphic__poster{ width: 60%; }
-}

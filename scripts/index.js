@@ -59,7 +59,7 @@ const projects = [
         title: 'Sirloin',
         tag: 'Redesign',
         href: './project-sirloin.html',
-        thumb: './images/sirloin.jpg', // 준비되면 이미지 경로 입력 (예: assets/img/sirloin/thumb.webp)
+        thumb: './images/sirloin.jpg',
     },
     {
         num: '02',
@@ -120,7 +120,6 @@ const posters = [
         poster: './images/poster/spring.jpg',
         media: [{ type: 'video', src: './images/poster/spring.mp4' }]
     },
-    { num: '04', media: [{ type: 'video', src: './images/poster/spring.mp4' }] },
     { num: '05', media: [{ type: 'image', src: './images/poster/Dopamine.jpg' }] },
     { num: '05', media: [
         { type: 'image', src: './images/poster/hoam-mockup.jpg' },
