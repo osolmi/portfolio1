@@ -138,6 +138,7 @@
     /* margin-top: var(--row-gap); */
     overflow: hidden;
     height: calc(100svh - var(--right-h) - var(--right-gap));
+    max-height: 63vh;
 }
 .project__hero-image{
     background-color: aliceblue;
@@ -178,16 +179,33 @@
     mix-blend-mode: difference;
 }
 .project__scroll-label{
+    mix-blend-mode: normal;
     font-size: var(--font-xs);
-    position: static;
+    font-weight: 300;
+    position: absolute;
+    bottom: var(--padding);
+    left: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
     margin-top: auto;
-    opacity: 0.6;
+    opacity: 0.9;
+    animation: scrollani 0.7s alternate infinite ease-in-out;
+}
+.project__scroll-label::after{
+        content: '';
+    display: block;
+    width: 0.8px;
+    height: 28px;
+    background-color: var(--white);
+    opacity: 0.8;
 }
 
+@keyframes scrollani {
+    0% {transform: translateY(0);}
+    100% {transform: translateY(-10px);}
+}
 /* --------------------------------------------------------------------------
     2-3) 핀 고정 맥북 목업 스크롤 스타일 (90% 축소 & 중앙 정렬)
 -------------------------------------------------------------------------- */
@@ -228,7 +246,7 @@
 .project__laptop-screen {
     position: absolute;
     /* 프레임이 90%로 줄어들고 중앙에 위치함에 따라 내부 위치도 함께 조정 */
-    top: 10.1%;
+    top: 9.9%;
     left: 14.6%;
     width: 70.8%;   /* (기존 76.4% * 0.9) */
     height: 74%;  /* (기존 83% * 0.9) */

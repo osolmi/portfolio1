@@ -121,11 +121,12 @@ const posters = [
         media: [{ type: 'video', src: './images/poster/spring.mp4' }]
     },
     { num: '05', media: [{ type: 'image', src: './images/poster/Dopamine.jpg' }] },
-    { num: '05', media: [
+    { num: '06', media: [
         { type: 'image', src: './images/poster/hoam-mockup.jpg' },
         { type: 'image', src: './images/poster/4-Fold Brochure Mockup.png' },
         { type: 'image', src: './images/poster/4-Fold Brochure Mockup2.png' }
     ] },
+    { num: '09', media: [{ type: 'image', src: './images/poster/carmex.jpg' }] },
 ];
 
 const graphicListEl = document.querySelector('.graphic__list');
@@ -171,11 +172,33 @@ function updateActiveThumb(){
 
     const active = posters[closestIndex];
     if (active && posterPreviewEl){
-        posterPreviewEl.innerHTML = active.media.map(m =>
+        const hasMultipleMedia = active.media.length > 1;
+
+        const scrollBadgeHtml = hasMultipleMedia
+            ? `<div class="graphic__scroll-badge" aria-hidden="true">
+                <span>Scroll</span>
+                <svg width="10" height="12" viewBox="0 0 10 12">
+                    <path d="M5 0V10M5 10L1 6M5 10L9 6" stroke-width="1.2"/>
+                </svg>
+            </div>`
+            : '';
+
+        const mediaHtml = active.media.map(m =>
             m.type === 'video'
                 ? `<video src="${m.src}" autoplay muted loop playsinline></video>`
                 : `<img src="${m.src}" alt="">`
         ).join('');
+
+        posterPreviewEl.innerHTML = scrollBadgeHtml + mediaHtml;
+
+        // 유저가 한 번이라도 스크롤하면 그 포스터에 한해 뱃지 숨김 —
+        // 포스터 바뀌면(innerHTML 재생성) 다시 나타남
+        const badge = posterPreviewEl.querySelector('.graphic__scroll-badge');
+        if (badge){
+            posterPreviewEl.addEventListener('scroll', () => {
+                badge.classList.add('is-hidden');
+            }, { once: true });
+        }
     }
 }
 
