@@ -607,17 +607,18 @@ header.nav .nav__links {display: flex; gap: 20rem;}
 .graphic__poster{
     position: absolute;
     top: 50%; transform: translateY(-50%);
-    /* 썸네일 오른쪽 끝(50% + 썸네일폭/2)에서 60px 띄운 지점부터 시작 */
     left: calc(50% + var(--graphic-thumb-w) / 2 + 100px);
     width: min(30rem, calc(50% - var(--graphic-thumb-w) / 2 - 60px - 40px));
-    /* 상하 padding을 "똑같이" 줘야, background-position:center로 그려지는 이미지의
-       세로 중심이 정확히 화면 세로 중앙과 일치함 (포스터 실제 높이와 무관) */
-    padding: var(--graphic-top-pad) 0;
-    background-size: contain;
+    max-height: calc(100vh - var(--graphic-top-pad) * 2);
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
+/* .graphic__poster::-webkit-scrollbar{ display: none; } */
 .graphic__poster img,
 .graphic__poster video{
     width: min(30rem ,100%);
     display: block;
+    max-height: calc(100vh - var(--graphic-top-pad) * 2);
+    object-fit: contain;
 }
-
