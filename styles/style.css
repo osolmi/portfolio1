@@ -26,10 +26,10 @@ body.has-slides{
 }
 /* 전역 커스텀 커서 */
 body{
-    cursor:auto;/* OS 데스크탑 기본 커서 숨김 */
+    cursor:none;/* OS 데스크탑 기본 커서 숨김 */
 }
 a, button, [data-cursor]{
-    cursor:auto;
+    cursor:pointer;
 }
 @media (hover:none){
     body{cursor:auto;}/* 터치 기기는 유지 */

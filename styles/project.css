@@ -177,6 +177,16 @@
     color: #ffffff !important;
     mix-blend-mode: difference;
 }
+.project__scroll-label{
+    font-size: var(--font-xs);
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto;
+    opacity: 0.6;
+}
 
 /* --------------------------------------------------------------------------
     2-3) 핀 고정 맥북 목업 스크롤 스타일 (90% 축소 & 중앙 정렬)
