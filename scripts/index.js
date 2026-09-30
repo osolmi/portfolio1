@@ -94,7 +94,7 @@ const worksIndex = document.querySelector('.works-index');
         <a class="works-index__panel" href="${p.href}" data-index="${p.num}" data-cursor="Explore">
             <div class="panel__thumb" style="${p.thumb ? `background-image:url('${p.thumb}')` : ''}"></div>
             <span class="panel__num">${p.num}</span>
-            <span class="panel__arrow">↗</span>
+            <span class="panel__arrow"><img src="./images/icon_arrow.png" alt=""></span>
             <span class="panel__category">${p.category}</span>
             <span class="panel__title">${p.title}</span>
         ${p.tag ? `<span class="panel__tag">${p.tag}</span>` : ''}
@@ -126,7 +126,27 @@ const posters = [
         { type: 'image', src: './images/poster/4-Fold Brochure Mockup.png' },
         { type: 'image', src: './images/poster/4-Fold Brochure Mockup2.png' }
     ] },
+    { num: '07', media: [
+        { type: 'image', src: './images/poster/cover.jpg' },
+        { type: 'image', src: './images/poster/2.jpg' },
+        { type: 'image', src: './images/poster/3.jpg' },
+        { type: 'image', src: './images/poster/4.jpg' },
+        { type: 'image', src: './images/poster/5.jpg' },
+        { type: 'image', src: './images/poster/7.jpg' },
+        { type: 'image', src: './images/poster/8.jpg' },
+        { type: 'image', src: './images/poster/9.jpg' },
+    ] },
+    { num: '08', media: [
+        { type: 'image', src: './images/poster/ophelia.jpg' },
+        { type: 'image', src: './images/poster/pearl.jpg' },
+    ] },
+    { num: '09', media: [
+        { type: 'image', src: './images/poster/cattown1.jpg' },
+        { type: 'image', src: './images/poster/cattown2.jpg' }
+    ]},
     { num: '09', media: [{ type: 'image', src: './images/poster/carmex.jpg' }] },
+    { num: '09', media: [{ type: 'image', src: './images/poster/redconcert.jpg' }] },
+    { num: '09', media: [{ type: 'image', src: './images/poster/burger.png' }] },
 ];
 
 const graphicListEl = document.querySelector('.graphic__list');
@@ -175,12 +195,7 @@ function updateActiveThumb(){
         const hasMultipleMedia = active.media.length > 1;
 
         const scrollBadgeHtml = hasMultipleMedia
-            ? `<div class="graphic__scroll-badge" aria-hidden="true">
-                <span>Scroll</span>
-                <svg width="10" height="12" viewBox="0 0 10 12">
-                    <path d="M5 0V10M5 10L1 6M5 10L9 6" stroke-width="1.2"/>
-                </svg>
-            </div>`
+            ? `<div class="graphic__scroll-badge" aria-hidden="true">Scroll</div>`
             : '';
 
         const mediaHtml = active.media.map(m =>

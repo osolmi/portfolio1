@@ -194,7 +194,7 @@
     animation: scrollani 0.7s alternate infinite ease-in-out;
 }
 .project__scroll-label::after{
-        content: '';
+    content: '';
     display: block;
     width: 0.8px;
     height: 28px;
