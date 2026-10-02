@@ -108,7 +108,7 @@
     flex-direction: column;
 }
 .project__right{
-    position: relative; /* project__year를 absolute로 띄우는 기준 */
+    position: relative;
     padding-top: 8.938rem;
     height: var(--right-h);
     margin-bottom: calc(var(--row-gap) + var(--right-gap));
@@ -117,7 +117,7 @@
     /* height: var(--row1-h); */
     overflow: hidden;
     margin-bottom:26px;
-    padding-right: 130px;
+    padding-right: 110px;
 }
 .project__desc-text{
     display: -webkit-box;
@@ -127,11 +127,8 @@
     /* font-size: var(--pf-font-s); */
     line-height: 1.5;
 }
-/* Year는 흐름에서 빼서 Hero 시작 위치에 영향 안 주게 함 —
-   HTML 순서(desc 다음 year)는 그대로 두고, 시각적 위치만 desc 바로 아래로 지정 */
 .project__year{}
 
-/* ---- 히어로 이미지 (이전에 유실됐던 속성 전부 복원 + 정렬 시스템 반영) ---- */
 .project__hero{
     position: relative;
     width: 100%;
