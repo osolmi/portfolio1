@@ -87,7 +87,14 @@
                 </div>
                 <!-- 2-2) 히어로 이미지 + 스크롤 진행률 인디케이터 -->
                 <div class="project__hero">
-                    <div class="project__hero-image"><img src="./images/sirloin_thum.jpg" alt="히어로 이미지"></div>
+                    <video class="project__hero-video is-rotated" autoplay loop muted playsinline>
+                        <source src="./images/sirloin_bg.mp4" type="video/mp4">
+                    </video>
+
+                    <!-- 2) 영상 위에 올려질 전면 이미지 -->
+                    <div class="project__hero-image">
+                        <img src="./images/sirloin_thum.jpg" alt="썸네일">
+                    </div>
                     <div class="project__scroll-indicator">
                         <span class="project__scroll-percent">0%</span>
                     </div>

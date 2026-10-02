@@ -44,3 +44,32 @@ window.addEventListener('scroll', () => {
         siteImage.style.transform = `translateY(${-progress * maxScrollDistance}px)`;
     }
 });
+// 영상 재생 후 역재생 기능
+document.addEventListener("DOMContentLoaded", function() {
+    const video = document.getElementById('hero-video');
+    if (!video) return;
+
+    let isReversing = false;
+    let intervalId = null;
+
+    // 영상 재생 이벤트 로직
+    video.addEventListener('ended', function() {
+        // 정재생이 완료되면 역재생 시작
+        if (!isReversing) {
+            isReversing = true;
+            video.pause();
+            
+            // 프레임 단위로 currentTime을 감소시켜 역재생 효과 구현
+            intervalId = setInterval(function() {
+                if (video.currentTime <= 0.1) {
+                    clearInterval(intervalId);
+                    isReversing = false;
+                    video.currentTime = 0;
+                    video.play(); // 다시 정재생 시작
+                } else {
+                    video.currentTime -= 0.04; // 역재생 속도 조절 (약 25fps)
+                }
+            }, 40); // 약 40ms 간격으로 감속
+        }
+    });
+});
