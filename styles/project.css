@@ -234,6 +234,7 @@
     margin-top: auto;
     opacity: 0.9;
     animation: scrollani 0.7s alternate infinite ease-in-out;
+    z-index: 50;
 }
 .project__scroll-label::after{
     content: '';
