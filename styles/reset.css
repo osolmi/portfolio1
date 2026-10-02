@@ -15,6 +15,12 @@ table,thead,tbody,tfoot,tr,td,th {
     color:#000;
     font-family:pretendard, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+img, a {
+    -webkit-user-drag: none;
+    user-drag: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
 /* 개별 태그 초기값 */
 a {text-decoration:none;}
 ul,ol,li {list-style:none;}
