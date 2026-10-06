@@ -120,7 +120,7 @@ const posters = [
         poster: './images/poster/spring.jpg',
         media: [{ type: 'video', src: './images/poster/spring.mp4' }]
     },
-    { num: '05', media: [{ type: 'image', src: './images/poster/Dopamine.jpg' }] },
+    { num: '05', media: [{ type: 'image', src: './images/poster/dopamine.jpg' }] },
     { num: '06', media: [
         { type: 'image', src: './images/poster/hoam-mockup.jpg' },
         { type: 'image', src: './images/poster/4-Fold Brochure Mockup.png' },
