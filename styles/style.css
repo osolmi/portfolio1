@@ -105,9 +105,6 @@ header.nav{
 .nav__logo img{/* png버전 */
     width:10em; height: auto;
 }
-.nav__logo sup{
-    font-size: 0.625rem; font-weight:300;
-}
 
 header.nav .nav__links {
     display: flex;
