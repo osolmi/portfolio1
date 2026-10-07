@@ -32,9 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     animateCursor();
     
-    // 이벤트 위임(delegation) 방식으로 변경 —
-    // 나중에 Work Index 패널이 JS로 동적 렌더링되어도
-    // data-cursor 요소를 항상 정확히 감지함
+    // 1. 워크 섹션 패널 전용 이벤트 ([data-cursor])
     document.addEventListener('pointerover', (e) => {
         const target = e.target.closest('[data-cursor]');
         if (target){
@@ -47,6 +45,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = e.target.closest('[data-cursor]');
         if (target){
         cursor.classList.remove('is-hovering');
+        }
+    });
+    // 2. 전역 a, button 태그 호버 이벤트 (HTML 수정 없이 자동 적용)
+    document.addEventListener('pointerover', (e) => {
+        const target = e.target.closest('a, button');
+        if (target && !target.closest('.work')) {
+            cursor.classList.add('is-active');
+        }
+    });
+
+    document.addEventListener('pointerout', (e) => {
+        const target = e.target.closest('a, button');
+        if (target && !target.closest('.work')) {
+            cursor.classList.remove('is-active');
         }
     });
     });
